@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -55,6 +56,31 @@ public class ContatosControle {
 		for (int i = 0; i < LISTA_CONTATOS.size(); i++) {
 			if (LISTA_CONTATOS.get(i).getId().equals(id)) {
 				LISTA_CONTATOS.remove(i);
+				break;
+			}
+		}
+		return new ModelAndView("redirect:/contatos");
+	}
+
+	@GetMapping("/contatos/{id}/editar")
+	public ModelAndView editar(@PathVariable String id) {
+		ModelAndView mv = new ModelAndView("editar");
+		
+		for (Contato contato : LISTA_CONTATOS) {
+			if (contato.getId().equals(id)) {
+				mv.addObject("contato", contato);
+				break;
+			}
+		}
+		
+		return mv;
+	}
+
+	@PutMapping("/contatos/{id}")
+	public ModelAndView atualizar(Contato contato) {
+		for (int i = 0; i < LISTA_CONTATOS.size(); i++) {
+			if (LISTA_CONTATOS.get(i).getId().equals(contato.getId())) {
+				LISTA_CONTATOS.set(i, contato);
 				break;
 			}
 		}

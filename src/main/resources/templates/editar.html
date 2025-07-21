@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>AlgaWorks</title>
+
+    <link rel="stylesheet" th:href="@{/css/estilo.css}" />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a th:href="@{/}"> AlgaWorks Contatos </a></li>
+
+          <li><a th:href="@{/contatos}"> Listar </a></li>
+
+          <li><a th:href="@{/contatos/novo}"> Novo </a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <h1>Editar contato</h1>
+      </section>
+
+      <section>
+        <form
+          th:action="@{/contatos/{id}(id=${contato.id})}"
+          th:method="put"
+          th:object="${contato}"
+        >
+          <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" th:field="*{nome}" />
+          </div>
+
+          <div class="form-group">
+            <label for="telefone">Telefone:</label>
+            <input type="text" th:field="*{telefone}" />
+          </div>
+
+          <div class="form-group">
+            <button>Salvar</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
