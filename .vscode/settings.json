@@ -1,0 +1,9 @@
+{
+  "titan.extension.excludedFromBuild": [
+    "\\target\\classes\\com\\algaworks",
+    "\\target\\classes\\com",
+    "\\target\\classes\\com\\algaworks\\AlgaWorksContatosApplication.class",
+    "\\target\\classes\\com\\algaworks\\Contato.class",
+    "\\target\\classes\\com\\algaworks\\ContatosControle.class"
+  ]
+}

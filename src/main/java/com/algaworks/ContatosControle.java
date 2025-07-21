@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -26,19 +27,28 @@ public class ContatosControle {
 	
 	@GetMapping("/contatos")
 	public ModelAndView listar() {
-		ModelAndView modelAndView = new ModelAndView("listar");
+		ModelAndView mv = new ModelAndView("listar");
 		
-		modelAndView.addObject("contatos", LISTA_CONTATOS);
+		mv.addObject("contatos", LISTA_CONTATOS);
 		
-		return modelAndView;
+		return mv;
 	}
 	
 	@GetMapping("/contatos/novo")
 	public ModelAndView novo() {
-		ModelAndView modelAndView = new ModelAndView("formulario");
-		
-		modelAndView.addObject("contato", new Contato());
-		
-		return modelAndView;
+		ModelAndView mv = new ModelAndView("formulario");
+		mv.addObject("contato", new Contato());
+		return mv;
 	}	
+
+	@PostMapping("/contatos")
+	public ModelAndView salvar(Contato contato) {
+		ModelAndView mv = new ModelAndView("redirect:/contatos");
+		LISTA_CONTATOS.add(contato);
+		return mv;
+	}
+
+
+
+
 }
